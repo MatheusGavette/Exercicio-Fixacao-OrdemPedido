@@ -36,14 +36,14 @@ namespace Exercicio_Fixacao_OrdemPedido.Entities
 
         public double Total()
         {
-            double valorTotal = 0;
+            double totalPrice = 0;
 
             foreach (OrderItem item in Items)
             {
-                valorTotal += item.SubTotal();
+                totalPrice += item.SubTotal();
             }
 
-            return valorTotal;
+            return totalPrice;
         }
 
         public override string ToString()
@@ -52,19 +52,13 @@ namespace Exercicio_Fixacao_OrdemPedido.Entities
             extrato.AppendLine("Order Sumary:");
             extrato.AppendLine($"Order Moment: {Moment.ToString("dd/MM/yyyy")}");
             extrato.AppendLine($"Order Status: {Status.ToString()}");
-            extrato.Append($"Cliente: {Client.Name}");
-            extrato.Append($" ({Client.BirthDate.ToString("dd/MM/yyyy")})");
-            extrato.Append(" - ");
-            extrato.AppendLine(Client.Email);
+            extrato.AppendLine($"Cliente: {Client}");
             extrato.AppendLine("Order Items:");
             foreach (OrderItem item in Items)
             {
-                extrato.Append(item.Product.Name);
-                extrato.Append($", ${item.Price.ToString("F2", CultureInfo.InvariantCulture)}");
-                extrato.Append($", Quantity: {item.Quantity}");
-                extrato.AppendLine($", Subtotal: {item.SubTotal().ToString("F2", CultureInfo.InvariantCulture)}");
+                extrato.AppendLine(item.ToString());
             }
-            extrato.Append($"Total Price: {Total().ToString("F2", CultureInfo.InvariantCulture)}");
+            extrato.AppendLine($"Total Price: {Total().ToString("F2", CultureInfo.InvariantCulture)}");
 
             return extrato.ToString();
 

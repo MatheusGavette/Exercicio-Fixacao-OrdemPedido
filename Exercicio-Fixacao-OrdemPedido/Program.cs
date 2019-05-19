@@ -21,9 +21,8 @@ namespace Exercicio_Fixacao_OrdemPedido
             Console.WriteLine("\n -------------------- \n");
 
             Client client = new Client(name, email, dateBirth);
-            DateTime createDateOrder = DateTime.Now;
-
-            Order orderClient = new Order(createDateOrder, Enum.Parse<OrderStatus>("Processing"), client);
+            
+            Order orderClient = new Order(DateTime.Now, Enum.Parse<OrderStatus>("Processing"), client);
 
             Console.Write("How many items to this order? ");
             int qtd = int.Parse(Console.ReadLine());
@@ -32,6 +31,7 @@ namespace Exercicio_Fixacao_OrdemPedido
 
             for (int i = 0; i < qtd; i++)
             {
+                Console.WriteLine("Enter product {0}", i+1);
                 Console.Write("Product Name: ");
                 string nameProd = Console.ReadLine();
                 Console.Write("Price: ");
@@ -40,7 +40,8 @@ namespace Exercicio_Fixacao_OrdemPedido
                 int qtdProd = int.Parse(Console.ReadLine());
 
                 Product prod = new Product(nameProd, price);
-                OrderItem newItem = new OrderItem(qtdProd, prod);
+                OrderItem newItem = new OrderItem(qtdProd, prod, price);
+
                 orderClient.AddItem(newItem);
 
                 Console.WriteLine("\n -------------------- \n");
