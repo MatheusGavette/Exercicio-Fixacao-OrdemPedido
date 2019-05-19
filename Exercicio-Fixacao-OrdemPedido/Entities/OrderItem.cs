@@ -14,11 +14,12 @@
         public OrderItem(int quantity, Product product) : this(quantity)
         {
             Product = product;
+            Price = Product.Price;
         }
 
         public double SubTotal()
         {
-            Price = Product.Price;
+            
 
             return Quantity * Price;
 
